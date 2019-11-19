@@ -21,8 +21,7 @@ function usage() {
 
 
 function getname() {
-    local huh="$1"
-    echo $(basename $huh)
+    echo $(basename "$1")
 }
 export -f getname
 
