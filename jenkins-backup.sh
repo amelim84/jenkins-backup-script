@@ -99,6 +99,8 @@ function main() {
 
   ls -R "${ARC_DIR}"
 
+  du -hs "${ARC_DIR}"
+
   exit 0
 }
 
