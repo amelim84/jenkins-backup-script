@@ -41,7 +41,7 @@ function backup_jobs() {
       [ "${job_name}" = ".." ] && continue
       [ -d "${JENKINS_HOME}/jobs/${rel_depth}/${job_name}" ] && mkdir -p "${ARC_DIR}/jobs/${rel_depth}/${job_name}/"
       DST_PATH="${ARC_DIR}/jobs/${rel_depth}/${job_name}/"
-      while read -r TESTFILE; do
+      while read -r TESTFILE;
       do
           echo 'wooah'
           echo $TESTFILE
