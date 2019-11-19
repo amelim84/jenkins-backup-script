@@ -96,7 +96,7 @@ function main() {
   #
   # cleanup
 
-  ls -R ${ARC_DIR}
+  ls -R "${ARC_DIR}"
 
   exit 0
 }
