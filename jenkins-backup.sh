@@ -7,16 +7,17 @@
 
 
 readonly JENKINS_HOME="$1"
-readonly DEST_FILE="$2"
+# readonly DEST_FILE="$2"
 readonly CUR_DIR=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 readonly TMP_DIR="${CUR_DIR}/tmp"
-readonly ARC_NAME="jenkins-backup"
-readonly ARC_DIR="${TMP_DIR}/${ARC_NAME}"
+# readonly ARC_NAME="jenkins-backup"
+# readonly ARC_DIR="${TMP_DIR}/${ARC_NAME}"
+readonly ARC_DIR="$2"
 readonly TMP_TAR_NAME="${TMP_DIR}/archive.tar.gz"
 
 
 function usage() {
-  echo "usage: $(basename $0) /path/to/jenkins_home archive.tar.gz"
+  echo "usage: $(basename $0) /path/to/jenkins_home /path/to/backup"
 }
 
 
@@ -52,7 +53,7 @@ function cleanup() {
 
 
 function main() {
-  if [ -z "${JENKINS_HOME}" -o -z "${DEST_FILE}" ] ; then
+  if [ -z "${JENKINS_HOME}" -o -z "${ARC_DIR}" ] ; then
     usage >&2
     exit 1
   fi
