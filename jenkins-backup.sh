@@ -21,6 +21,7 @@ function usage() {
 
 
 function getname() {
+    echo "Path: $2"
     echo $(basename "$1")
 }
 export -f getname
@@ -38,7 +39,7 @@ function backup_jobs() {
       [ "${job_name}" = ".." ] && continue
       [ -d "${JENKINS_HOME}/jobs/${rel_depth}/${job_name}" ] && mkdir -p "${ARC_DIR}/jobs/${rel_depth}/${job_name}/"
       # find "${JENKINS_HOME}/jobs/${rel_depth}/${job_name}/" -maxdepth 1 -name "*.xml" -print0 | xargs -0 -I {} echo {} "${ARC_DIR}/jobs/${rel_depth}/${job_name}/"$(basename -- "{}") "END"
-      find "${JENKINS_HOME}/jobs/${rel_depth}/${job_name}/" -maxdepth 1 -name "*.xml" -print0 -exec bash -c 'getname "$@"' bash {} +
+      find "${JENKINS_HOME}/jobs/${rel_depth}/${job_name}/" -maxdepth 1 -name "*.xml" -print0 -exec bash -c 'getname "$@"' bash {} "${ARC_DIR}/jobs/${rel_depth}/${job_name}/" +
       if [ -f "${JENKINS_HOME}/jobs/${rel_depth}/${job_name}/config.xml" ] && [ "$(grep -c "com.cloudbees.hudson.plugins.folder.Folder" "${JENKINS_HOME}/jobs/${rel_depth}/${job_name}/config.xml")" -ge 1 ] ; then
         #echo "Folder! $JENKINS_HOME/jobs/$rel_depth/$job_name/jobs"
         backup_jobs "${JENKINS_HOME}/jobs/${rel_depth}/${job_name}/jobs"
