@@ -21,7 +21,10 @@ function usage() {
 
 
 function getname() {
-    echo $@
+    for var in "$@"
+    do
+        echo $var
+    done
 }
 export -f getname
 
